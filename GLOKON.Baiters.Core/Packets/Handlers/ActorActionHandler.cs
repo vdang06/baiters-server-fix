@@ -88,7 +88,7 @@ namespace GLOKON.Baiters.Core.Packets.Handlers
                                 return;
                             }
 
-
+                            // Test
                             // Only remove actor if _wipe_actor called from client (e.g: when fishing out meteors or from ripples)
                             Log.Debug("Player asked to remove {0} actor", actor.Type);
                             server.RemoveActor(wipeActorId);
