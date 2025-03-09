@@ -82,11 +82,19 @@ namespace GLOKON.Baiters.Core.Packets.Handlers
                     {
                         if (ActorType.ServerOnly.Contains(actor.Type))
                         {
-                            return;
+
+                            // Skip removing rain clouds & birds
+                            if (actor.Type == ActorType.RainCloud || actor.Type == ActorType.Bird) {
+                                return;
+                            }
+
+
+                            // Only remove actor if _wipe_actor called from client (e.g: when fishing out meteors or from ripples)
+                            Log.Debug("Player asked to remove {0} actor", actor.Type);
+                            server.RemoveActor(wipeActorId);
                         }
 
-                        Log.Debug("Player asked to remove {0} actor", actor.Type);
-                        server.RemoveActor(wipeActorId);
+                        
                     }
                     break;
                 case "_talk": // Play player speech audio (single character per packet)
